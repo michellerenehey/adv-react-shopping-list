@@ -1,9 +1,10 @@
 import './App.css';
+import Selfcare from './views/Selfcare';
 
 function App() {
   return (
     <div className="App">
-      <p>app comopnent</p>
+      <Selfcare />
     </div>
   );
 }
