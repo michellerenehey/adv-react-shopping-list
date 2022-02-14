@@ -1,10 +1,13 @@
 import './App.css';
-import Selfcare from './views/Selfcare';
+import Home from './views/Home/Home';
+import Layout from './views/Layout/Layout';
 
 function App() {
   return (
     <div className="App">
-      <Selfcare />
+      <Layout>
+        <Home />
+      </Layout>
     </div>
   );
 }
