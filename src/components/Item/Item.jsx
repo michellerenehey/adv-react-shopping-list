@@ -1,7 +1,7 @@
 import './Item.css';
 import { useState } from 'react';
 
-export default function Item({ item, editItem }) {
+export default function Item({ item, editItem, deleteItem }) {
   const [isEditing, setIsEditing] = useState(false);
 
   let itemContent;
@@ -20,7 +20,7 @@ export default function Item({ item, editItem }) {
     );
   } else {
     itemContent = (
-      <div>
+      <div className="item-edit">
         <p>{item.text}</p>
         <button onClick={() => setIsEditing(true)}>Edit</button>
       </div>
@@ -28,8 +28,9 @@ export default function Item({ item, editItem }) {
   }
 
   return (
-    <div>
+    <div className="Item">
       <p>{itemContent}</p>
+      <button onClick={() => deleteItem(item.id)}>Delete</button>
     </div>
   );
 }

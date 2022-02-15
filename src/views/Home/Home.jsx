@@ -28,6 +28,11 @@ function itemsReducer(state, action) {
         return item;
       });
     }
+    case 'deleted': {
+      console.log('item.id', state.id);
+      console.log('action.id', action.id);
+      return state.filter((item) => item.id !== action.taskId);
+    }
     default: {
       throw Error(`unknown action: ${action.type}`);
     }
@@ -55,11 +60,18 @@ export default function Home() {
     });
   };
 
+  const handleDeleteItem = (taskId) => {
+    dispatch({
+      type: 'deleted',
+      taskId,
+    });
+  };
+
   return (
     <div className="Home" style={{ backgroundImage: `url(${foroe})` }}>
       <h1>Self Care Checklist</h1>
       <AddItem addItem={handleAddItem} />
-      <ItemList items={items} editItem={handleEditItem} />
+      <ItemList items={items} editItem={handleEditItem} deleteItem={handleDeleteItem} />
     </div>
   );
 }
