@@ -41,7 +41,7 @@ function itemsReducer(state, action) {
 export default function Home() {
   // useReducer hook to handle state
   const [items, dispatch] = useReducer(itemsReducer, initialItems);
-  console.log(items);
+  // console.log(items);
   // dispatch in functions
   const handleAddItem = (text) => {
     dispatch({

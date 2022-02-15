@@ -12,7 +12,11 @@ export default function AddItem({ addItem }) {
   return (
     <div className="AddItem">
       <form className="add-form" onSubmit={handleSubmit}>
-        <input value={newItem} onChange={(e) => setNewItem(e.target.value)} />
+        <input
+          value={newItem}
+          placeholder="add item"
+          onChange={(e) => setNewItem(e.target.value)}
+        />
         <button>Add Item</button>
       </form>
     </div>
