@@ -44,11 +44,7 @@ export default function Home() {
     <div className="Home" style={{ backgroundImage: `url(${foroe})` }}>
       <h1>Self Care Checklist</h1>
       <AddItem addItem={handleAddItem} />
-      {items.map((item) => (
-        <div key={item.id}>
-          <p>{item.text}</p>
-        </div>
-      ))}
+      <ItemList items={items} />
     </div>
   );
 }
