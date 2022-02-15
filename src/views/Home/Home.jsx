@@ -29,8 +29,6 @@ function itemsReducer(state, action) {
       });
     }
     case 'deleted': {
-      console.log('item.id', state.id);
-      console.log('action.id', action.id);
       return state.filter((item) => item.id !== action.taskId);
     }
     default: {
@@ -69,7 +67,7 @@ export default function Home() {
 
   return (
     <div className="Home" style={{ backgroundImage: `url(${foroe})` }}>
-      <h1>Self Care Checklist</h1>
+      <h1>Self Care CheckList</h1>
       <AddItem addItem={handleAddItem} />
       <ItemList items={items} editItem={handleEditItem} deleteItem={handleDeleteItem} />
     </div>

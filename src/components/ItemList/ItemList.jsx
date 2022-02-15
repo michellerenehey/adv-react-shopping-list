@@ -6,7 +6,6 @@ export default function ItemList({ items, editItem, deleteItem }) {
     <div className="ItemList">
       {items.map((item) => (
         <div key={item.id}>
-          {/* <p>{item.text}</p> */}
           <Item item={item} editItem={editItem} deleteItem={deleteItem} />
         </div>
       ))}
