@@ -19,3 +19,13 @@ test('user can add item', () => {
 
   expect(screen.getByText(/take a bath/i)).toBeInTheDocument();
 });
+
+test('user can delete an item', () => {
+  render(<App />);
+
+  const listItem = screen.getByText(/meditate/i);
+  const deleteButton = screen.getByTestId('0');
+  userEvent.click(deleteButton);
+
+  expect(listItem).not.toBeInTheDocument();
+});

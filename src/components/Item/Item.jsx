@@ -30,7 +30,9 @@ export default function Item({ item, editItem, deleteItem }) {
   return (
     <div className="Item">
       {itemContent}
-      <button onClick={() => deleteItem(item.id)}>Delete</button>
+      <button onClick={() => deleteItem(item.id)} data-testid={item.id}>
+        Delete
+      </button>
     </div>
   );
 }
