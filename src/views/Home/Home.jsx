@@ -20,6 +20,14 @@ function itemsReducer(state, action) {
     case 'added': {
       return [...state, { id: action.id, text: action.text, done: false }];
     }
+    case 'edited': {
+      return state.map((item) => {
+        if (item.id === action.task.id) {
+          return action.task;
+        }
+        return item;
+      });
+    }
     default: {
       throw Error(`unknown action: ${action.type}`);
     }
@@ -40,11 +48,18 @@ export default function Home() {
     });
   };
 
+  const handleEditItem = (task) => {
+    dispatch({
+      type: 'edited',
+      task,
+    });
+  };
+
   return (
     <div className="Home" style={{ backgroundImage: `url(${foroe})` }}>
       <h1>Self Care Checklist</h1>
       <AddItem addItem={handleAddItem} />
-      <ItemList items={items} />
+      <ItemList items={items} editItem={handleEditItem} />
     </div>
   );
 }
