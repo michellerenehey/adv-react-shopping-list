@@ -15,7 +15,11 @@ export default function Item({ item, editItem, deleteItem }) {
             editItem({ ...item, text: e.target.value });
           }}
         />
-        <button onClick={() => setIsEditing(false)} data-testid={`save-${item.id}`}>
+        <button
+          onClick={() => setIsEditing(false)}
+          data-testid={`save-${item.id}`}
+          className="edit-button"
+        >
           Save
         </button>
       </div>
@@ -24,7 +28,11 @@ export default function Item({ item, editItem, deleteItem }) {
     itemContent = (
       <div className="item-edit" style={{ textDecoration: item.done ? 'line-through' : null }}>
         <p>{item.text}</p>
-        <button onClick={() => setIsEditing(true)} data-testid={`edit-${item.id}`}>
+        <button
+          onClick={() => setIsEditing(true)}
+          data-testid={`edit-${item.id}`}
+          className="edit-button"
+        >
           Edit
         </button>
       </div>
@@ -41,7 +49,7 @@ export default function Item({ item, editItem, deleteItem }) {
         }}
       />
       {itemContent}
-      <button onClick={() => deleteItem(item.id)} data-testid={item.id}>
+      <button onClick={() => deleteItem(item.id)} data-testid={item.id} className="edit-button">
         Delete
       </button>
     </div>
