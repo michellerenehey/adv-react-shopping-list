@@ -27,7 +27,7 @@ export default function Item({ item, editItem, deleteItem }) {
   } else {
     itemContent = (
       <div className="item-edit" style={{ textDecoration: item.done ? 'line-through' : null }}>
-        <p>{item.text}</p>
+        {item.text}
         <button
           onClick={() => setIsEditing(true)}
           data-testid={`edit-${item.id}`}

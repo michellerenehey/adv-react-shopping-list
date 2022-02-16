@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from './App';
 
@@ -49,4 +49,15 @@ test('user can edit an item', () => {
 
   // expect NEW item to show up on screen
   expect(screen.getByText(/testing input field/i)).toBeInTheDocument();
+});
+
+test('user can edit casey way', () => {
+  render(<App />);
+
+  const meditate = screen.getByText(/meditate/i);
+  expect(meditate).toBeInTheDocument();
+  screen.debug(meditate);
+
+  const editButton = within(meditate).getByRole('button', { name: /edit/i });
+  expect(editButton).toBeInTheDocument();
 });
