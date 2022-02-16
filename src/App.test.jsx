@@ -29,3 +29,22 @@ test('user can delete an item', () => {
 
   expect(listItem).not.toBeInTheDocument();
 });
+
+test('user can edit an item', () => {
+  render(<App />);
+
+  // click edit button
+  const editButton = screen.getByTestId('edit-0');
+  userEvent.click(editButton);
+  // see item show up
+  const editableListItem = screen.getByDisplayValue(/meditate/i);
+
+  // change item to NEW item
+  userEvent.type(editableListItem, 'testing input field');
+
+  // grab & click save button
+  const saveButton = screen.getByTestId('save-0');
+  userEvent.click(saveButton);
+  // expect NEW item to show up on screen
+  expect(screen.getByText(/testing input field/i)).toBeInTheDocument();
+});

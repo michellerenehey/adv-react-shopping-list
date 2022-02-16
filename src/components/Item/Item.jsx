@@ -15,14 +15,18 @@ export default function Item({ item, editItem, deleteItem }) {
             editItem({ ...item, text: e.target.value });
           }}
         />
-        <button onClick={() => setIsEditing(false)}>Save</button>
+        <button onClick={() => setIsEditing(false)} data-testid={`save-${item.id}`}>
+          Save
+        </button>
       </div>
     );
   } else {
     itemContent = (
       <div className="item-edit">
         <p>{item.text}</p>
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button onClick={() => setIsEditing(true)} data-testid={`edit-${item.id}`}>
+          Edit
+        </button>
       </div>
     );
   }
