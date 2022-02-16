@@ -8,6 +8,12 @@ test('renders page header', () => {
   expect(header).toBeInTheDocument();
 });
 
+test('a list of items appears', () => {
+  render(<App />);
+  const itemList = screen.getAllByRole('listitem');
+  expect(itemList).toHaveLength(3);
+});
+
 test('user can add item', () => {
   render(<App />);
 
