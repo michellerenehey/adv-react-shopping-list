@@ -22,7 +22,7 @@ export default function Item({ item, editItem, deleteItem }) {
     );
   } else {
     itemContent = (
-      <div className="item-edit">
+      <div className="item-edit" style={{ textDecoration: item.done ? 'line-through' : null }}>
         <p>{item.text}</p>
         <button onClick={() => setIsEditing(true)} data-testid={`edit-${item.id}`}>
           Edit
@@ -33,6 +33,13 @@ export default function Item({ item, editItem, deleteItem }) {
 
   return (
     <div className="Item">
+      <input
+        type="checkbox"
+        checked={item.done}
+        onChange={(e) => {
+          editItem({ ...item, done: e.target.checked });
+        }}
+      />
       {itemContent}
       <button onClick={() => deleteItem(item.id)} data-testid={item.id}>
         Delete

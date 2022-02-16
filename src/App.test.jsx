@@ -36,6 +36,7 @@ test('user can edit an item', () => {
   // click edit button
   const editButton = screen.getByTestId('edit-0');
   userEvent.click(editButton);
+
   // see item show up
   const editableListItem = screen.getByDisplayValue(/meditate/i);
 
@@ -45,6 +46,7 @@ test('user can edit an item', () => {
   // grab & click save button
   const saveButton = screen.getByTestId('save-0');
   userEvent.click(saveButton);
+
   // expect NEW item to show up on screen
   expect(screen.getByText(/testing input field/i)).toBeInTheDocument();
 });
