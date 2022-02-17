@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import ListProvider from './context/ListContext';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ListProvider>
+      <App />
+    </ListProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
