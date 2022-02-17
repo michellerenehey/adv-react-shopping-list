@@ -7,9 +7,13 @@ export default function Header() {
   return (
     <div className="Header" style={{ backgroundImage: `url(${giphy})` }}>
       {items.length === 1 ? (
-        <span>You have {items.length} thoughtful thing to do today.</span>
+        <span aria-label={`Single item: ${items.length}`}>
+          You have {items.length} thoughtful thing to do today.
+        </span>
       ) : (
-        <span>You have {items.length} thoughtful things to do today.</span>
+        <span aria-label={`Multiple items: ${items.length}`}>
+          You have {items.length} thoughtful things to do today.
+        </span>
       )}
     </div>
   );

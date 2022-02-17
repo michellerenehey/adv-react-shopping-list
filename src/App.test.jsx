@@ -1,22 +1,27 @@
 import { render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import ListProvider from './context/ListContext';
 import App from './App';
 
+beforeEach(() => {
+  render(
+    <ListProvider>
+      <App />
+    </ListProvider>
+  );
+});
+
 test('renders page header', () => {
-  render(<App />);
   const header = screen.getByRole('heading', { name: /self care checklist/i });
   expect(header).toBeInTheDocument();
 });
 
 test('a list of items appears', () => {
-  render(<App />);
   const itemList = screen.getAllByRole('listitem');
   expect(itemList).toHaveLength(3);
 });
 
 test('user can add item', () => {
-  render(<App />);
-
   const input = screen.getByPlaceholderText(/add item/i);
   userEvent.type(input, 'take a bath');
 
@@ -27,8 +32,6 @@ test('user can add item', () => {
 });
 
 test('user can delete an item', () => {
-  render(<App />);
-
   const listItem = screen.getByText(/meditate/i);
   const deleteButton = screen.getByTestId('0');
   userEvent.click(deleteButton);
@@ -37,8 +40,6 @@ test('user can delete an item', () => {
 });
 
 test('user can edit an item', () => {
-  render(<App />);
-
   // click edit button
   const editButton = screen.getByTestId('edit-0');
   userEvent.click(editButton);
@@ -58,12 +59,17 @@ test('user can edit an item', () => {
 });
 
 test('user can edit casey way', () => {
-  render(<App />);
-
   const meditate = screen.getByText(/meditate/i);
   expect(meditate).toBeInTheDocument();
   screen.debug(meditate);
 
   const editButton = within(meditate).getByRole('button', { name: /edit/i });
   expect(editButton).toBeInTheDocument();
+});
+
+test('header shows number of items', () => {
+  const itemList = screen.getAllByRole('listitem');
+  expect(itemList).toHaveLength(3);
+  const headerNumber = screen.getByLabelText(`Multiple items: 3`);
+  expect(headerNumber).toBeInTheDocument();
 });
