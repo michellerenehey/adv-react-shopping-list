@@ -27,6 +27,9 @@ function itemsReducer(state, action) {
     case 'deleted': {
       return state.filter((item) => item.id !== action.taskId);
     }
+    case 'clear': {
+      return (state = []);
+    }
     default: {
       throw Error(`unknown action: ${action.type}`);
     }
@@ -63,8 +66,16 @@ const ListProvider = ({ children }) => {
       taskId,
     });
   };
+
+  const handleClearItems = () => {
+    dispatch({
+      type: 'clear',
+    });
+  };
   return (
-    <ListContext.Provider value={{ items, handleAddItem, handleEditItem, handleDeleteItem }}>
+    <ListContext.Provider
+      value={{ items, handleAddItem, handleEditItem, handleDeleteItem, handleClearItems }}
+    >
       {children}
     </ListContext.Provider>
   );

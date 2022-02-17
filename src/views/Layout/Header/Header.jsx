@@ -3,7 +3,7 @@ import giphy from '../../../assets/giphy.webp';
 import { useList } from '../../../context/ListContext';
 
 export default function Header() {
-  const { items } = useList();
+  const { items, handleClearItems } = useList();
   return (
     <div className="Header" style={{ backgroundImage: `url(${giphy})` }}>
       {items.length === 1 ? (
@@ -15,6 +15,7 @@ export default function Header() {
           You have {items.length} thoughtful things to do today.
         </span>
       )}
+      <button onClick={() => handleClearItems()}>Clear Checklist</button>
     </div>
   );
 }
