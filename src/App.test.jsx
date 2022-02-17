@@ -61,7 +61,6 @@ test('user can edit an item', () => {
 test('user can edit casey way', () => {
   const meditate = screen.getByText(/meditate/i);
   expect(meditate).toBeInTheDocument();
-  screen.debug(meditate);
 
   const editButton = within(meditate).getByRole('button', { name: /edit/i });
   expect(editButton).toBeInTheDocument();
@@ -72,4 +71,11 @@ test('header shows number of items', () => {
   expect(itemList).toHaveLength(3);
   const headerNumber = screen.getByLabelText(`Multiple items: 3`);
   expect(headerNumber).toBeInTheDocument();
+});
+
+test.only('clear button clears list', () => {
+  const clearButton = screen.getByRole('button', { name: /Clear Checklist/i });
+  userEvent.click(clearButton);
+  const itemList = screen.getByRole('list');
+  expect(itemList.children).toHaveLength(0);
 });
