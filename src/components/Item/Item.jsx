@@ -1,7 +1,10 @@
 import './Item.css';
 import { useState } from 'react';
+import { useList } from '../../context/ListContext';
 
-export default function Item({ item, editItem, deleteItem }) {
+export default function Item({ item }) {
+  const { handleEditItem, handleDeleteItem } = useList();
+
   const [isEditing, setIsEditing] = useState(false);
 
   let itemContent;
@@ -12,7 +15,7 @@ export default function Item({ item, editItem, deleteItem }) {
         <input
           value={item.text}
           onChange={(e) => {
-            editItem({ ...item, text: e.target.value });
+            handleEditItem({ ...item, text: e.target.value });
           }}
         />
         <button
@@ -45,11 +48,15 @@ export default function Item({ item, editItem, deleteItem }) {
         type="checkbox"
         checked={item.done}
         onChange={(e) => {
-          editItem({ ...item, done: e.target.checked });
+          handleEditItem({ ...item, done: e.target.checked });
         }}
       />
       {itemContent}
-      <button onClick={() => deleteItem(item.id)} data-testid={item.id} className="edit-button">
+      <button
+        onClick={() => handleDeleteItem(item.id)}
+        data-testid={item.id}
+        className="edit-button"
+      >
         Delete
       </button>
     </div>
