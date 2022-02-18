@@ -73,7 +73,7 @@ test('header shows number of items', () => {
   expect(headerNumber).toBeInTheDocument();
 });
 
-test.only('clear button clears list', () => {
+test('clear button clears list', () => {
   const clearButton = screen.getByRole('button', { name: /Clear Checklist/i });
   userEvent.click(clearButton);
   const itemList = screen.getByRole('list');
