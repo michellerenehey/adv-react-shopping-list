@@ -1,4 +1,5 @@
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer, useEffect } from 'react';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 // manipulate id numbers
 let nextId = 3;
@@ -41,8 +42,15 @@ const ListContext = createContext();
 
 // set up provider
 const ListProvider = ({ children }) => {
+  // set up LS
+  const [storedItemList, setStoredItemList] = useLocalStorage('ITEMS', initialItems);
+
   // useReducer hook to handle state
-  const [items, dispatch] = useReducer(itemsReducer, initialItems);
+  const [items, dispatch] = useReducer(itemsReducer, storedItemList);
+
+  useEffect(() => {
+    setStoredItemList(items);
+  }, [items, setStoredItemList]);
 
   // dispatch in functions
   const handleAddItem = (text) => {
@@ -72,6 +80,7 @@ const ListProvider = ({ children }) => {
       type: 'clear',
     });
   };
+
   return (
     <ListContext.Provider
       value={{ items, handleAddItem, handleEditItem, handleDeleteItem, handleClearItems }}
