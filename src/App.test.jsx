@@ -41,17 +41,17 @@ test('user can delete an item', () => {
 
 test('user can edit an item', () => {
   // click edit button
-  const editButton = screen.getByTestId('edit-0');
+  const editButton = screen.getByTestId('edit-1');
   userEvent.click(editButton);
 
   // see item show up
-  const editableListItem = screen.getByDisplayValue(/meditate/i);
+  const editableListItem = screen.getByDisplayValue(/Go for 20 minute walk/i);
 
   // change item to NEW item
   userEvent.type(editableListItem, 'testing input field');
 
   // grab & click save button
-  const saveButton = screen.getByTestId('save-0');
+  const saveButton = screen.getByTestId('save-1');
   userEvent.click(saveButton);
 
   // expect NEW item to show up on screen
@@ -59,10 +59,10 @@ test('user can edit an item', () => {
 });
 
 test('user can edit casey way', () => {
-  const meditate = screen.getByText(/meditate/i);
-  expect(meditate).toBeInTheDocument();
+  const walk = screen.getByText(/Go for 20 minute walk/i);
+  expect(walk).toBeInTheDocument();
 
-  const editButton = within(meditate).getByRole('button', { name: /edit/i });
+  const editButton = within(walk).getByRole('button', { name: /edit/i });
   expect(editButton).toBeInTheDocument();
 });
 
