@@ -1,0 +1,18 @@
+.Item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px;
+  background-color: rgba(63, 45, 10, 0.797);
+  color: white;
+}
+
+.item-edit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.edit-button {
+  margin: 5px;
+}
